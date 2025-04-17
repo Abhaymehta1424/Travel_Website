@@ -1,0 +1,319 @@
+<!--  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <style>
+        body {
+            background: url('background.jpg') no-repeat center center fixed; /* Centered and fixed background */
+            background-size: cover; /* Cover the entire viewport */
+            font-family: Arial, sans-serif;
+            margin: 0; /* Remove default margin */
+            height: 100vh; /* Full height of the viewport */
+            display: flex; /* Flexbox for centering */
+            align-items: center; /* Center vertically */
+            justify-content: center; /* Center horizontally */
+        }
+        form {
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background for the form */
+            padding: 20px; /* Padding inside the form */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+        label {
+            display: block; /* Block display for labels */
+            margin-top: 10px; /* Space above each label */
+        }
+        input[type="text"] {
+            width: calc(100% - 22px); /* Full width minus padding and border */
+            padding: 10px; /* Padding inside input fields */
+            margin-top: 5px; /* Space above input fields */
+            border-radius: 5px; /* Rounded corners for inputs */
+            border: 1px solid #ccc; /* Light gray border */
+        }
+        input[type="submit"] {
+            margin-top: 15px; /* Space above submit button */
+            padding: 10px 15px; /* Padding inside the button */
+            border-radius: 5px; /* Rounded corners for button */
+            border: none; /* No border for button */
+            background-color: #28a745; /* Green background for button */
+            color: white; /* White text color for button */
+            cursor: pointer; /* Pointer cursor on hover */
+        }
+        input[type="submit"]:hover {
+            background-color: #218838; /* Darker green on hover */
+        }
+    </style>
+</head>
+<body>
+    <form id="myForm" onsubmit="return validate();">
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email"><span class="error" id="emailError"></span><br>
+        
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" name="phone"><span class="error" id="phoneError"></span><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        function validate() {
+            let isValid = true;
+            const email = document.getElementById("email").value;
+            const phone = document.getElementById("phone").value;
+
+            document.getElementById("emailError").innerText = "";
+            document.getElementById("phoneError").innerText = "";
+
+            if (!/\S+@\S+\.\S+/.test(email)) {
+                document.getElementById("emailError").innerText = "Invalid email format.";
+                isValid = false;
+            }
+            if (!/^\d{10}$/.test(phone)) {
+                document.getElementById("phoneError").innerText = "Phone number must be 10 digits.";
+                isValid = false;
+            }
+            return isValid;
+        }
+    </script>
+</body>
+</html> -->
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <style>
+        body {
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        form {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input[type="text"], input[type="password"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        input[type="submit"] {
+            margin-top: 15px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            border: none;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <form id="myForm" onsubmit="return validate();">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"><span class="error" id="nameError"></span><br>
+
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email"><span class="error" id="emailError"></span><br>
+
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" name="phone"><span class="error" id="phoneError"></span><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password"><span class="error" id="passwordError"></span><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        function validate() {
+            let isValid = true;
+
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const phone = document.getElementById("phone").value.trim();
+            const password = document.getElementById("password").value.trim();
+
+            document.getElementById("nameError").innerText = "";
+            document.getElementById("emailError").innerText = "";
+            document.getElementById("phoneError").innerText = "";
+            document.getElementById("passwordError").innerText = "";
+
+            if (name === "") {
+                document.getElementById("nameError").innerText = "Name is required.";
+                isValid = false;
+            }
+            
+            if (!/\S+@\S+\.\S+/.test(email)) {
+                document.getElementById("emailError").innerText = "Invalid email format.";
+                isValid = false;
+            }
+
+            if (!/^\d{10}$/.test(phone)) {
+                document.getElementById("phoneError").innerText = "Phone number must be 10 digits.";
+                isValid = false;
+            }
+
+            if (password.length < 6) {
+                document.getElementById("passwordError").innerText = "Password must be at least 6 characters.";
+                isValid = false;
+            }
+
+            return isValid; // Prevent form submission if validation fails
+        }
+    </script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <style>
+
+        body {
+            background-image: url('your-background-image-url.jpg'); /* Replace with your image URL */
+            background-size: cover;
+            background-repeat: no-repeat;
+            font-family: Arial, sans-serif;
+        }
+
+        .form-container {
+            width: 300px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Registration Form</h1>
+        <form id="registrationForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" required>
+
+            <button type="submit">Submit</button>
+            <div id="error-message" class="error-message"></div>
+        </form>
+    </div>
+
+    <script>
+
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            let errorMessage = '';
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+
+            if (!name) {
+                errorMessage += 'Name is required.\n';
+            }
+            if (!email) {
+                errorMessage += 'Email is required.\n';
+            } else if (!validateEmail(email)) {
+                errorMessage += 'Invalid email format.\n';
+            }
+            if (!phone) {
+                errorMessage += 'Phone number is required.\n';
+            }
+
+            
+            const errorMessageDiv = document.getElementById('error-message');
+            if (errorMessage) {
+                errorMessageDiv.innerText = errorMessage;
+            } else {
+                errorMessageDiv.innerText = '';
+                alert('Form submitted successfully!'); 
+                
+            }
+        });
+
+        
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(String(email).toLowerCase());
+        }
+    </script>
+</body>
+</html>
